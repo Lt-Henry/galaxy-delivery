@@ -9,7 +9,7 @@ COLOR_CLEAN=\x1b[31;01m
 APP_NAME=galaxy-delivery
 
 #libraries
-LIBS=sdl2
+LIBS=sdl2 SDL2_image
 
 #objects
 OBJECTS=main.o Game.o

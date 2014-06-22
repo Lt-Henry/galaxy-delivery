@@ -54,10 +54,34 @@ void Game::Run()
 		
 	}
 	
-	SDL_Renderer *ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	SDL_Renderer *renderer = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	
-	if(ren==nullptr)
+	if(renderer==nullptr)
 	{
 		
 	}
+	
+	bool quit_request=false;
+	SDL_Event event;
+	
+	while(!quit_request)
+	{
+		while(SDL_PollEvent(&event))
+		{
+			switch(event.type)
+			{
+				case SDL_QUIT:
+					cout<<"Quit request"<<endl;
+					quit_request=true;
+				break;
+			}
+		}
+		
+		
+		SDL_RenderClear(renderer);
+		/* insert render here :D */
+		SDL_RenderPresent(renderer);
+	}
+	
+	SDL_Quit();
 }
