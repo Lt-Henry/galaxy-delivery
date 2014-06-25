@@ -2,6 +2,8 @@
 #ifndef _GAME_
 #define _GAME_
 
+#include <string>
+
 namespace com
 {
 	namespace toxiclabs
@@ -23,6 +25,8 @@ namespace com
 				
 				
 					void Run();
+					
+					void LoadTextures(std::string path);
 				
 				
 			};

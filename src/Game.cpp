@@ -2,8 +2,10 @@
 
 #include "Game.hpp"
 #include <SDL2/SDL.h>
+#include <glob.h>
 
 #include <iostream>
+#include <string>
 
 using namespace std;
 using namespace com::toxiclabs::galaxy;
@@ -14,6 +16,7 @@ Game * Game::factory = nullptr;
 Game::Game()
 {
 	cout<<"Game constructor"<<endl;
+	LoadTextures("../rsrc");
 }
 
 
@@ -84,4 +87,25 @@ void Game::Run()
 	}
 	
 	SDL_Quit();
+}
+
+
+void Game::LoadTextures(string path)
+{
+	
+	path=path+"/*.png";
+	
+	cout<<"Loading Textures..."<<endl;
+	
+	glob_t glob_result;
+	glob(path.c_str(),GLOB_TILDE,NULL,&glob_result);
+		
+	for(unsigned int i=0;i<glob_result.gl_pathc;i++)
+	{
+		string file = glob_result.gl_pathv[i];
+		
+		cout<<"--loading "<<file<<endl;
+	}
+	
+	globfree(&glob_result);
 }
