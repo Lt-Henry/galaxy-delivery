@@ -12,7 +12,7 @@ APP_NAME=galaxy-delivery
 LIBS=sdl2 SDL2_image
 
 #objects
-OBJECTS=main.o Game.o
+OBJECTS=main.o Game.o Sprite.o Math.o
 
 #cflags
 LIBS_CFLAGS=`pkg-config $(LIBS) --cflags`
