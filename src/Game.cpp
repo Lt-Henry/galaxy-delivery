@@ -105,6 +105,8 @@ void Game::LoadTextures(string path)
 		string file = glob_result.gl_pathv[i];
 		
 		cout<<"--loading "<<file<<endl;
+		
+		
 	}
 	
 	globfree(&glob_result);
