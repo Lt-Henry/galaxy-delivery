@@ -3,6 +3,7 @@
 #include "Game.hpp"
 #include <SDL2/SDL.h>
 #include <glob.h>
+#include <libgen.h>
 
 #include <iostream>
 #include <string>
@@ -103,8 +104,8 @@ void Game::LoadTextures(string path)
 	for(unsigned int i=0;i<glob_result.gl_pathc;i++)
 	{
 		string file = glob_result.gl_pathv[i];
-		
-		cout<<"--loading "<<file<<endl;
+		string name = basename(glob_result.gl_pathv[i]);
+		cout<<"--loading "<<name<<endl;
 		
 		
 	}
