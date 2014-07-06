@@ -16,7 +16,7 @@ namespace com
 			
 			enum class SpriteState{Running,KillRequest};
 			
-			enum class SpriteRenderMode{Screen,Wolrd};
+			enum class SpriteRenderMode{Screen,World};
 			
 			class Sprite
 			{

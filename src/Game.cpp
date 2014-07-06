@@ -2,6 +2,7 @@
 
 #include "Game.hpp"
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 #include <glob.h>
 #include <libgen.h>
 
@@ -17,13 +18,14 @@ Game * Game::factory = nullptr;
 Game::Game()
 {
 	cout<<"Game constructor"<<endl;
-	LoadTextures("../rsrc");
+	
 }
 
 
 Game::~Game()
 {
 	cout<<"Game destructor"<<endl;
+	UnloadTextures();
 }
 
 Game * Game::GetGame()
@@ -51,19 +53,25 @@ void Game::Run()
 		cerr<<"Failed to initialize SDl"<<endl;
 	}
 	
-	SDL_Window *win = SDL_CreateWindow("Galaxy Delivery", 100, 100, 640, 480, SDL_WINDOW_SHOWN);
+	window = SDL_CreateWindow("Galaxy Delivery", 100, 100, 1280, 720, SDL_WINDOW_SHOWN);
 	
-	if(win==nullptr)
+	if(window==nullptr)
 	{
-		
+		cerr<<"Failed to create window"<<endl;
+		return;
 	}
 	
-	SDL_Renderer *renderer = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	
 	if(renderer==nullptr)
 	{
-		
+		cerr<<"Failed to create renderer"<<endl;
+		return;
 	}
+	
+	/* Load textures once the renderer is ready */
+	LoadTextures("../rsrc");
+	
 	
 	bool quit_request=false;
 	SDL_Event event;
@@ -107,8 +115,89 @@ void Game::LoadTextures(string path)
 		string name = basename(glob_result.gl_pathv[i]);
 		cout<<"--loading "<<name<<endl;
 		
+		SDL_Surface * surface = nullptr;
+		
+		surface = IMG_Load(file.c_str());
+		
+		if(surface==nullptr)
+		{
+			cerr<<"Unable to load "<<file<<endl;
+		}
+		else
+		{
+			SDL_Texture * texture = nullptr;
+			
+			texture = SDL_CreateTextureFromSurface(renderer,surface);
+			SDL_FreeSurface(surface);
+			
+			if(texture==nullptr)
+			{
+				cerr<<"Unable to create texture for "<<file<<endl;
+				
+			}
+			else
+			{
+				/* all went ok */
+				textures[name]=texture;
+			}
+		}
+		
 		
 	}
 	
 	globfree(&glob_result);
+}
+
+void Game::UnloadTextures()
+{
+	cout<<"* Freeing textures..."<<endl;
+	for(pair<string,SDL_Texture *> it : textures)
+	{
+		cout<<"-"<<it.first<<endl;
+		SDL_DestroyTexture(it.second);
+	}
+}
+
+void Game::AddSprite(Sprite * sprite)
+{
+	sprites.push_back(sprite);
+}
+
+
+void Game::StepSprites(int ms)
+{
+	for(Sprite * sprite : sprites)
+	{
+		/* ToDO*/
+	}
+}
+
+void Game::RenderSprites()
+{
+	vector<Sprite * >screen;
+	vector<Sprite *>world;
+	
+	for(Sprite * sprite : sprites)
+	{
+		switch(sprite->rendermode)
+		{
+			case SpriteRenderMode::Screen:
+				screen.push_back(sprite);
+			break;
+			
+			case SpriteRenderMode::World:
+				world.push_back(sprite);
+			break;
+		}
+	}
+	
+	for(Sprite * sprite : world)
+	{
+		/* render code goes here */
+	}
+	
+	for(Sprite * sprite : screen)
+	{
+		/* render code goes here */
+	} 
 }
