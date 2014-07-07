@@ -76,8 +76,13 @@ void Game::Run()
 	bool quit_request=false;
 	SDL_Event event;
 	
+	vector<SDL_Event> events;
+	
 	while(!quit_request)
 	{
+		
+		events.clear();
+		
 		while(SDL_PollEvent(&event))
 		{
 			switch(event.type)
@@ -87,7 +92,11 @@ void Game::Run()
 					quit_request=true;
 				break;
 			}
+			
+			events.push_back(event);
 		}
+		
+		StepSprites(0,events);
 		
 		
 		SDL_RenderClear(renderer);
@@ -164,17 +173,17 @@ void Game::AddSprite(Sprite * sprite)
 }
 
 
-void Game::StepSprites(int ms)
+void Game::StepSprites(int ms,vector<SDL_Event> & events)
 {
 	for(Sprite * sprite : sprites)
 	{
-		/* ToDO*/
+		sprite->Step(ms,events);
 	}
 }
 
 void Game::RenderSprites()
 {
-	vector<Sprite * >screen;
+	vector<Sprite *>screen;
 	vector<Sprite *>world;
 	
 	for(Sprite * sprite : sprites)

@@ -45,7 +45,7 @@ namespace com
 					
 					void AddSprite(Sprite * sprite);
 					
-					void StepSprites(int ms);
+					void StepSprites(int ms,std::vector<SDL_Event> & events);
 					void RenderSprites();
 				
 				

@@ -42,3 +42,11 @@ Rectangle::Rectangle(float x,float y,float width,float height)
 	this->width=width;
 	this->height=height;
 }
+
+
+bool Rectangle::Collision(Point & p)
+{
+	bool ret = (p.x>=x) && (p.y>=y) && (p.x<(x+width)) && (p.y<=(y+height));
+	
+	return ret;
+}

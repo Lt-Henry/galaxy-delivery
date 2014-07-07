@@ -48,6 +48,8 @@ namespace com
 					Rectangle();
 					Rectangle(float x,float y,float width,float height);
 					
+					bool Collision(Point & p);
+					
 				};
 			}
 		}
