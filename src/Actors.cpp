@@ -16,7 +16,21 @@ Ship::Ship():Sprite("com.toxiclabs.galaxy.Ship")
 	
 	texture = game->textures["ship.png"];
 	
+	Uint32 format;
+	int access;
+	int w;
+	int h;
 	
+	SDL_QueryTexture(texture,&format,&access,&w,&h);
+	
+	rectangle.x=50;
+	rectangle.y=50;
+	rectangle.w=w;
+	rectangle.h=h;
+	
+	rendermode=SpriteRenderMode::World;
+	
+	cout<<"New ship"<<endl;
 }
 
 

@@ -1,6 +1,8 @@
 
-
+#include "Actors.hpp"
 #include "Game.hpp"
+
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <glob.h>
@@ -73,6 +75,11 @@ void Game::Run()
 	LoadTextures("../rsrc");
 	
 	
+	/* faking actors */
+	
+	AddSprite(new Ship());
+	
+	
 	bool quit_request=false;
 	SDL_Event event;
 	
@@ -100,7 +107,7 @@ void Game::Run()
 		
 		
 		SDL_RenderClear(renderer);
-		/* insert render here :D */
+		RenderSprites();
 		SDL_RenderPresent(renderer);
 	}
 	
@@ -202,7 +209,9 @@ void Game::RenderSprites()
 	
 	for(Sprite * sprite : world)
 	{
-		/* render code goes here */
+		
+		SDL_RenderCopy(renderer,sprite->texture,NULL,&sprite->rectangle);
+				
 	}
 	
 	for(Sprite * sprite : screen)

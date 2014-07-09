@@ -3,6 +3,7 @@
 #ifndef _SPRITE_
 #define _SPRITE_
 
+
 #include <SDL2/SDL.h>
 #include <string>
 #include <vector>
@@ -27,6 +28,7 @@ namespace com
 				SDL_Texture * texture;
 				SpriteState state;
 				SpriteRenderMode rendermode;
+				SDL_Rect rectangle; 
 				
 				Sprite(std::string name);
 				virtual ~Sprite();
