@@ -36,5 +36,32 @@ Ship::Ship():Sprite("com.toxiclabs.galaxy.Ship")
 
 void Ship::Step(int ms,vector<SDL_Event> & events)
 {
-	
+	for(SDL_Event event : events)
+	{
+		switch(event.type)
+		{
+			case SDL_KEYDOWN:
+			
+				switch(event.key.keysym.sym)
+				{
+					case SDLK_LEFT:
+						rectangle.x--;
+					break;
+					
+					case SDLK_RIGHT:
+						rectangle.x++;
+					break;
+					
+					case SDLK_UP:
+						rectangle.y--;
+					break;
+					
+					case SDLK_DOWN:
+						rectangle.y++;
+					break;
+				}
+			
+			break;
+		}
+	}
 }
