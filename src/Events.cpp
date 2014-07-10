@@ -7,25 +7,25 @@
 using namespace std;
 using namespace com::toxiclabs::galaxy;
 
-EventKeyDown::EventKeyDown()
+EventKeyDown::EventKeyDown():Event()
 {
 	type=EventType::KeyDown;
 	key=KeyType::None;
 }
 
-EventKeyDown::EventKeyDown(KeyType key)
+EventKeyDown::EventKeyDown(KeyType key):Event()
 {
 	type=EventType::KeyDown;
 	this->key=key;
 }
 
-EventKeyUp::EventKeyUp()
+EventKeyUp::EventKeyUp():Event()
 {
 	type=EventType::KeyUp;
 	key=KeyType::None;
 }
 
-EventKeyUp::EventKeyUp(KeyType key)
+EventKeyUp::EventKeyUp(KeyType key):Event()
 {
 	type=EventType::KeyUp;
 	this->key=key;

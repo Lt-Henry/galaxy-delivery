@@ -46,7 +46,7 @@ namespace com
 					
 					void AddSprite(Sprite * sprite);
 					
-					void StepSprites(int ms,std::vector<Event> & events);
+					void StepSprites(int ms,std::vector<Event *> & events);
 					void RenderSprites();
 				
 				

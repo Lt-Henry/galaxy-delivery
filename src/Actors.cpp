@@ -34,23 +34,23 @@ Ship::Ship():Sprite("com.toxiclabs.galaxy.Ship")
 }
 
 
-void Ship::Step(int ms,vector<Event> & events)
+void Ship::Step(int ms,vector<Event*> & events)
 {
 	static int push=0;
 	
-	for(Event event : events)
+	for(Event * event : events)
 	{
-		switch(event.type)
+		switch(event->type)
 		{
 			case EventType::KeyDown:
-				if( ((EventKeyDown)event).key==KeyType::Up)
+				if( static_cast<EventKeyDown *>(event)->key==KeyType::Up)
 				{
 					push = -2;//power on
 				}
 			break;
 			
 			case EventType::KeyUp:
-				if(static_cast<EventKeyUp>(event).key==KeyType::Up)
+				if(static_cast<EventKeyUp *>(event)->key==KeyType::Up)
 				{
 					push = 0;//power off
 				}

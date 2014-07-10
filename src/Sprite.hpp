@@ -34,7 +34,7 @@ namespace com
 				Sprite(std::string name);
 				virtual ~Sprite();
 				
-				virtual void Step(int ms,std::vector<Event> & events);
+				virtual void Step(int ms,std::vector<Event*> & events);
 				
 				
 				
