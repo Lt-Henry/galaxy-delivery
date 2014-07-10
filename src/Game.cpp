@@ -83,6 +83,11 @@ void Game::Run()
 	bool quit_request=false;
 	SDL_Event event;
 	
+	map<SDL_Keycode,KeyType>keymap;
+	
+	keymap[SDLK_UP]=KeyType::Up;
+	keymap[SDLK_DOWN]=KeyType::Down;
+	
 	vector<Event> events;
 	
 	while(!quit_request)
@@ -99,11 +104,14 @@ void Game::Run()
 				break;
 				
 				case SDL_KEYDOWN:
-					
+					if(!event.key.repeat)
+					{
+						events.push_back(EventKeyDown(keymap[event.key.keysym.sym]));
+					}
 				break;
 				
 				case SDL_KEYUP:
-					
+					events.push_back(EventKeyUp(keymap[event.key.keysym.sym]));
 				break;
 			}
 			

@@ -9,9 +9,9 @@ namespace com
 	{
 		namespace galaxy
 		{
-			enum class EventType { None, Key, Click};
+			enum class EventType { None, KeyDown, KeyUp, Click};
 			
-			enum class KeyType {Up, Down, Left, Right};
+			enum class KeyType {None, Up, Down, Left, Right};
 			
 			class Event
 			{
@@ -21,13 +21,22 @@ namespace com
 								
 			};
 			
-			class EventKey : public Event
+			class EventKeyDown : public Event
 			{
 				public:
 				
 				KeyType key;
-					
-				EventKey(KeyType key);
+				EventKeyDown();	
+				EventKeyDown(KeyType key);
+			};
+			
+			class EventKeyUp: public Event
+			{
+				public:
+				
+				KeyType key;
+				EventKeyUp();
+				EventKeyUp(KeyType key);
 			};
 			
 		}
