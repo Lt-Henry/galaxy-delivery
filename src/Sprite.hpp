@@ -3,7 +3,6 @@
 #ifndef _SPRITE_
 #define _SPRITE_
 
-#include "Events.hpp"
 
 #include <SDL2/SDL.h>
 #include <string>
@@ -34,7 +33,7 @@ namespace com
 				Sprite(std::string name);
 				virtual ~Sprite();
 				
-				virtual void Step(int ms,std::vector<Event*> & events);
+				virtual void Step(int ms,std::vector<SDL_Event> & events);
 				
 				
 				

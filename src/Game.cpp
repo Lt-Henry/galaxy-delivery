@@ -82,15 +82,9 @@ void Game::Run()
 	
 	bool quit_request=false;
 	SDL_Event event;
+		
 	
-	map<SDL_Keycode,KeyType>keymap;
-	
-	keymap[SDLK_UP]=KeyType::Up;
-	keymap[SDLK_DOWN]=KeyType::Down;
-	keymap[SDLK_LEFT]=KeyType::Left;
-	keymap[SDLK_RIGHT]=KeyType::Right;
-	
-	vector<Event *> events;
+	vector<SDL_Event> events;
 	
 	while(!quit_request)
 	{
@@ -105,16 +99,9 @@ void Game::Run()
 					quit_request=true;
 				break;
 				
-				case SDL_KEYDOWN:
-					if(!event.key.repeat)
-					{
-						events.push_back(new EventKeyDown(keymap[event.key.keysym.sym]));
-					}
-				break;
-				
-				case SDL_KEYUP:
-					events.push_back(new EventKeyUp(keymap[event.key.keysym.sym]));
-				break;
+				default:
+					events.push_back(event);
+						
 			}
 			
 			
@@ -197,7 +184,7 @@ void Game::AddSprite(Sprite * sprite)
 }
 
 
-void Game::StepSprites(int ms,vector<Event *> & events)
+void Game::StepSprites(int ms,vector<SDL_Event> & events)
 {
 	for(Sprite * sprite : sprites)
 	{

@@ -17,7 +17,7 @@ namespace com
 				
 				Ship();
 				
-				void Step(int ms,std::vector<Event*> & events);
+				void Step(int ms,std::vector<SDL_Event> & events);
 				
 			};
 		}

@@ -23,7 +23,7 @@ Sprite::~Sprite()
 }
 
 
-void Sprite::Step(int ms,vector<Event*> & events)
+void Sprite::Step(int ms,vector<SDL_Event> & events)
 {
 	
 }

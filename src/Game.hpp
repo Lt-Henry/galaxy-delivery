@@ -2,7 +2,7 @@
 #ifndef _GAME_
 #define _GAME_
 
-#include "Events.hpp"
+
 #include "Sprite.hpp"
 
 #include <SDL2/SDL.h>
@@ -46,7 +46,7 @@ namespace com
 					
 					void AddSprite(Sprite * sprite);
 					
-					void StepSprites(int ms,std::vector<Event *> & events);
+					void StepSprites(int ms,std::vector<SDL_Event> & events);
 					void RenderSprites();
 				
 				

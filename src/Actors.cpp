@@ -34,23 +34,23 @@ Ship::Ship():Sprite("com.toxiclabs.galaxy.Ship")
 }
 
 
-void Ship::Step(int ms,vector<Event*> & events)
+void Ship::Step(int ms,vector<SDL_Event> & events)
 {
 	static int push=0;
 	
-	for(Event * event : events)
+	for(SDL_Event  event : events)
 	{
-		switch(event->type)
+		switch(event.type)
 		{
-			case EventType::KeyDown:
-				if( static_cast<EventKeyDown *>(event)->key==KeyType::Up)
+			case SDL_KEYDOWN:
+				if(!event.key.repeat && event.key.keysym.sym==SDLK_UP)
 				{
 					push = -2;//power on
 				}
 			break;
 			
-			case EventType::KeyUp:
-				if(static_cast<EventKeyUp *>(event)->key==KeyType::Up)
+			case SDL_KEYUP:
+				if(event.key.keysym.sym==SDLK_UP)
 				{
 					push = 0;//power off
 				}
