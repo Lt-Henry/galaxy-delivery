@@ -35,8 +35,8 @@ namespace com
 				
 				virtual void Step(int ms,std::vector<SDL_Event> & events);
 				
-				
-				
+				bool Click(int x,int y);
+							
 			};
 		}
 	}

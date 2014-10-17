@@ -27,3 +27,20 @@ void Sprite::Step(int ms,vector<SDL_Event> & events)
 {
 	
 }
+
+
+bool Sprite::Click(int x,int y)
+{
+	if(rendermode==SpriteRenderMode::Screen)
+	{
+		if(x>=rectangle.x && x<=(rectangle.x+rectangle.w))
+		{
+			if(y>=rectangle.y && y<=(rectangle.y+rectangle.h))
+			{
+				return true;
+			}
+		}
+	}
+	
+	return false;
+}
