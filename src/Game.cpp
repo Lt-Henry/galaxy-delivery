@@ -223,3 +223,16 @@ void Game::RenderSprites()
 		/* render code goes here */
 	} 
 }
+
+
+void Game::GotoScreen(string name)
+{
+
+	for(Screen * q : screens)
+	{
+		if(q->name==name)
+		{
+			this->screen=q;
+		}
+	}
+}

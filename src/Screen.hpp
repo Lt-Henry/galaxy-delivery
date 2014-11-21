@@ -18,8 +18,12 @@ namespace com
 			{
 				public:
 				
-				std::string name;
-				std::vector<Sprite *> sprites;
+				std::string name; /*! screen name */
+				std::vector<Sprite *> w_sprites; /*! world sprites */
+				std::vector<Sprite *> s_sprites; /*! screen sprites */
+				
+				void Add(Sprite * sprite);
+				
 				
 				virtual void Step(int ms,std::vector<SDL_Event> & events){};
 				

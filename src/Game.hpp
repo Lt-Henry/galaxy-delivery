@@ -4,6 +4,7 @@
 
 
 #include "Sprite.hpp"
+#include "Screen.hpp"
 
 #include <SDL2/SDL.h>
 
@@ -26,6 +27,8 @@ namespace com
 					SDL_Renderer *renderer;
 					
 					std::vector<Sprite *> sprites;
+					std::vector<Screen *> screens;
+					Screen * screen;
 				
 					Game();
 					~Game();
@@ -48,6 +51,8 @@ namespace com
 					
 					void StepSprites(int ms,std::vector<SDL_Event> & events);
 					void RenderSprites();
+					
+					void GotoScreen(std::string name);
 				
 				
 			};

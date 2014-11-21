@@ -1,6 +1,6 @@
 
 #create an executable as target
-add_executable(galaxy main.cpp Game.cpp Actors.cpp Sprite.cpp Scenes.cpp)
+add_executable(galaxy main.cpp Game.cpp Actors.cpp Sprite.cpp Screen.cpp Scenes.cpp)
 
 #require pkg-config support
 find_package(PkgConfig REQUIRED)
