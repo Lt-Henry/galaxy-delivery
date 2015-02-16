@@ -19,9 +19,10 @@ namespace com
 				public:
 				
 				std::string name; /*! screen name */
-				std::vector<Sprite *> w_sprites; /*! world sprites */
-				std::vector<Sprite *> s_sprites; /*! screen sprites */
+				std::vector<Sprite *> sprites; /*! world sprites */
 				
+				
+								
 				void Add(Sprite * sprite);
 				
 				

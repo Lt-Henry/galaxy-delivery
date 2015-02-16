@@ -23,10 +23,7 @@ Sprite::~Sprite()
 }
 
 
-void Sprite::Step(int ms,vector<SDL_Event> & events)
-{
-	
-}
+
 
 
 bool Sprite::Click(int x,int y)

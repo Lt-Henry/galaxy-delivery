@@ -1,7 +1,7 @@
 
-#include "Actors.hpp"
-#include "Game.hpp"
 
+#include "Game.hpp"
+#include "Scenes.hpp"
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -74,10 +74,8 @@ void Game::Run()
 	/* Load textures once the renderer is ready */
 	LoadTextures("../rsrc");
 	
-	
-	/* faking actors */
-	
-	AddSprite(new Ship());
+	/* Load scenes */	
+	screens.push_back(new IntroScreen());
 	
 	
 	bool quit_request=false;
@@ -107,11 +105,14 @@ void Game::Run()
 			
 		}
 		
-		StepSprites(0,events);
+		if(screen!=nullptr)
+		{
+			screen->Step(10,events);
+		}
 		
 		
 		SDL_RenderClear(renderer);
-		RenderSprites();
+		Render();
 		SDL_RenderPresent(renderer);
 	}
 	
@@ -178,51 +179,42 @@ void Game::UnloadTextures()
 	}
 }
 
-void Game::AddSprite(Sprite * sprite)
+void Game::Render()
 {
-	sprites.push_back(sprite);
-}
-
-
-void Game::StepSprites(int ms,vector<SDL_Event> & events)
-{
-	for(Sprite * sprite : sprites)
+	if(screen!=nullptr)
 	{
-		sprite->Step(ms,events);
-	}
-}
-
-void Game::RenderSprites()
-{
-	vector<Sprite *>screen;
-	vector<Sprite *>world;
-	
-	for(Sprite * sprite : sprites)
-	{
-		switch(sprite->rendermode)
-		{
-			case SpriteRenderMode::Screen:
-				screen.push_back(sprite);
-			break;
-			
-			case SpriteRenderMode::World:
-				world.push_back(sprite);
-			break;
-		}
-	}
-	
-	for(Sprite * sprite : world)
-	{
+		vector<Sprite *>screen;
+		vector<Sprite *>world;
 		
-		SDL_RenderCopy(renderer,sprite->texture,NULL,&sprite->rectangle);
-				
-	}
+		for(Sprite * sprite : screen->sprites)
+		{
+			switch(sprite->rendermode)
+			{
+				case SpriteRenderMode::Screen:
+					screen.push_back(sprite);
+				break;
+			
+				case SpriteRenderMode::World:
+					world.push_back(sprite);
+				break;
+			}
+		}
+		
+		for(Sprite * sprite : world)
+		{
+			//ToDo: camera differential
+			SDL_RenderCopy(renderer,sprite->texture,nullptr,&sprite->rectangle);
+		}
 	
-	for(Sprite * sprite : screen)
-	{
-		/* render code goes here */
-	} 
+		for(Sprite * sprite : screen)
+		{
+			SDL_RenderCopy(renderer,sprite->texture,nullptr,&sprite->rectangle);
+		} 
+		
+	}
 }
+
+
 
 
 void Game::GotoScreen(string name)

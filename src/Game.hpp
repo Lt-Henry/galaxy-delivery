@@ -25,8 +25,7 @@ namespace com
 					
 					SDL_Window * window;
 					SDL_Renderer *renderer;
-					
-					std::vector<Sprite *> sprites;
+										
 					std::vector<Screen *> screens;
 					Screen * screen;
 				
@@ -47,11 +46,9 @@ namespace com
 					void LoadTextures(std::string path);
 					void UnloadTextures();
 					
-					void AddSprite(Sprite * sprite);
 					
-					void StepSprites(int ms,std::vector<SDL_Event> & events);
-					void RenderSprites();
-					
+					void Render();
+										
 					void GotoScreen(std::string name);
 				
 				

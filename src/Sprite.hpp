@@ -32,8 +32,7 @@ namespace com
 				
 				Sprite(std::string name);
 				virtual ~Sprite();
-				
-				virtual void Step(int ms,std::vector<SDL_Event> & events);
+								
 				
 				bool Click(int x,int y);
 							
