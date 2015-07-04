@@ -217,14 +217,21 @@ void Game::Render()
 
 
 
-void Game::GotoScreen(string name)
+void Game::GotoScreen(string & name)
 {
 
 	for(Screen * q : screens)
 	{
 		if(q->name==name)
 		{
+			if(this->screen!=nullptr)
+			{
+				this->screen->OnHide();
+			}
+			
 			this->screen=q;
+			
+			this->screen->OnShow();
 		}
 	}
 }

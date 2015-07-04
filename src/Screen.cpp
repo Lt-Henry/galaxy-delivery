@@ -38,3 +38,11 @@ void Screen::KillAll()
 		s->Kill();
 	}
 }
+
+void Screen::Step(int ms,std::vector<SDL_Event> & events)
+{
+	for(Sprite * s : sprites)
+	{
+		s->Step(ms,events);
+	}
+}

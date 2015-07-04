@@ -31,10 +31,10 @@ namespace com
 				void KillAll();
 				
 				
-				virtual void Step(int ms,std::vector<SDL_Event> & events){};
+				virtual void Step(int ms,std::vector<SDL_Event> & events);
 				
-								
-						
+				virtual void OnShow(){};
+				virtual void OnHide(){};
 			};
 		}
 	}

@@ -21,35 +21,36 @@ namespace com
 			class Game
 			{
 				private:
-					static Game * factory;
-					
-					SDL_Window * window;
-					SDL_Renderer *renderer;
-										
-					std::vector<Screen *> screens;
-					Screen * screen;
 				
-					Game();
-					~Game();
-							
+				static Game * factory;
+				
+				SDL_Window * window;
+				SDL_Renderer *renderer;
+				
+				std::vector<Screen *> screens;
+				Screen * screen;
+				
+				Game();
+				~Game();
+				
 				public:
 				
-					std::map<std::string,SDL_Texture *>textures;
-					
-				
-					static Game * GetGame();
-					static void Free();
+				std::map<std::string,SDL_Texture *>textures;
 				
 				
-					void Run();
-					
-					void LoadTextures(std::string path);
-					void UnloadTextures();
-					
-					
-					void Render();
-										
-					void GotoScreen(std::string name);
+				static Game * GetGame();
+				static void Free();
+				
+				
+				void Run();
+				
+				void LoadTextures(std::string path);
+				void UnloadTextures();
+				
+				
+				void Render();
+				
+				void GotoScreen(std::string & name);
 				
 				
 			};
