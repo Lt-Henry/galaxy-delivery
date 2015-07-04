@@ -74,9 +74,10 @@ void Game::Run()
 	/* Load textures once the renderer is ready */
 	LoadTextures("../rsrc");
 	
-	/* Load scenes */	
+	/* Load scenes */
 	screens.push_back(new IntroScreen());
 	
+	GoToScreen("screen.Intro");
 	
 	bool quit_request=false;
 	SDL_Event event;
