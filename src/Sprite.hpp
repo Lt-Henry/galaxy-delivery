@@ -15,7 +15,7 @@ namespace com
 		namespace galaxy
 		{
 			
-			enum class SpriteState{Running,KillRequest};
+			enum class SpriteState{Running,Kill};
 			
 			enum class SpriteRenderMode{Screen,World};
 			
@@ -32,10 +32,11 @@ namespace com
 				
 				Sprite(std::string name);
 				virtual ~Sprite();
-								
 				
-				bool Click(int x,int y);
-							
+				virtual void Step(int ms,std::vector<SDL_Event> & events){};
+				
+				void Kill();
+				
 			};
 		}
 	}

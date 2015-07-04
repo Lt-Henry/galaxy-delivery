@@ -14,30 +14,13 @@ Sprite::Sprite(string name)
 	
 	texture=nullptr;
 	state=SpriteState::Running;
-	rendermode=SpriteRenderMode::Screen;
-}
-
-Sprite::~Sprite()
-{
 	
 }
 
 
 
 
-
-bool Sprite::Click(int x,int y)
+void Sprite::Kill()
 {
-	if(rendermode==SpriteRenderMode::Screen)
-	{
-		if(x>=rectangle.x && x<=(rectangle.x+rectangle.w))
-		{
-			if(y>=rectangle.y && y<=(rectangle.y+rectangle.h))
-			{
-				return true;
-			}
-		}
-	}
-	
-	return false;
+	state=SpriteState::Kill;
 }
