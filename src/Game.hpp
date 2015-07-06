@@ -44,8 +44,8 @@ namespace com
 				
 				void Run();
 				
-				void LoadTextures(std::string path);
-				void UnloadTextures();
+				void LoadTextures(std::string path,std::string pkg);
+				void UnloadTextures(std::string pkg);
 				
 				
 				void Render();

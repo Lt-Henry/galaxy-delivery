@@ -121,10 +121,10 @@ void Game::Run()
 }
 
 
-void Game::LoadTextures(string path)
+void Game::LoadTextures(string path,string pkg)
 {
 	
-	path=path+"/*.png";
+	path=path+"/"+pkg+"/*.png";
 	
 	cout<<"Loading Textures..."<<endl;
 	
@@ -135,6 +135,9 @@ void Game::LoadTextures(string path)
 	{
 		string file = glob_result.gl_pathv[i];
 		string name = basename(glob_result.gl_pathv[i]);
+		int len=name.size();
+		name=pkg+"."+name.substr(0,len-4);
+		
 		cout<<"--loading "<<name<<endl;
 		
 		SDL_Surface * surface = nullptr;
@@ -170,14 +173,26 @@ void Game::LoadTextures(string path)
 	globfree(&glob_result);
 }
 
-void Game::UnloadTextures()
+void Game::UnloadTextures(string pkg)
 {
-	cout<<"* Freeing textures..."<<endl;
+	map<std::string,SDL_Texture *> new_textures;
+	
 	for(pair<string,SDL_Texture *> it : textures)
 	{
-		cout<<"-"<<it.first<<endl;
-		SDL_DestroyTexture(it.second);
+	
+		if(it.first.find(pkg+".")!=string::npos)
+		{
+			cout<<"-"<<it.first<<endl;
+			SDL_DestroyTexture(it.second);
+		}
+		else
+		{
+			new_textures.insert(it);
+		}
+
 	}
+	
+	textures = new_textures;
 }
 
 void Game::Render()

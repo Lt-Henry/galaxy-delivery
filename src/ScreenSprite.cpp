@@ -10,6 +10,9 @@ ScreenSprite::ScreenSprite(string & name,Screen * screen):Sprite(name)
 {
 	rendermode=SpriteRenderMode::Screen;
 	this->screen=screen;
+	
+	rectangle.x=0;
+	rectangle.y=0;
 }
 
 bool ScreenSprite::Click(int x,int y)
@@ -23,4 +26,33 @@ bool ScreenSprite::Click(int x,int y)
 	}
 	
 	return false;
+}
+
+void ScreenSprite::SetPosition(int x,int y, ScreenSpriteCenter center)
+{
+
+	int midx,midy;
+	
+	switch(center)
+	{
+		case ScreenSpriteCenter::TopLeft:
+			rectangle.x=x;
+			rectangle.y=y;
+		break;
+		
+		
+		case ScreenSpriteCenter::Center:
+			midx=rectangle.w/2;
+			midy=rectangle.h/2;
+			rectangle.x=x-midx;
+			rectangle.y=y-midy;
+		break;
+	}
+}
+
+void ScreenSprite::SetTexture(SDL_Texture * texture)
+{
+	this->texture=texture;
+	rectangle.w=texture->w;
+	rectangle.h=texture->h;
 }

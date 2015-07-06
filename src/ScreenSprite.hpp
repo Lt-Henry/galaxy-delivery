@@ -15,6 +15,8 @@ namespace com
 	{
 		namespace galaxy
 		{
+			enum class ScreenSpriteCenter{TopLeft,Center};
+			
 			class ScreenSprite: public Sprite
 			{
 			
@@ -29,6 +31,11 @@ namespace com
 				
 				
 				bool Click(int x,int y);
+				
+				void SetPosition(int x,int y,
+				 ScreenSpriteCenter center=ScreenSpriteCenter::Center);
+				
+				void SetTexture(SDL_Texture * texture);
 			};
 		}
 	}
