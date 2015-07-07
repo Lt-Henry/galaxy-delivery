@@ -8,7 +8,7 @@
 using namespace std;
 using namespace com::toxiclabs::galaxy;
 
-Screen::Screen(string & name)
+Screen::Screen(string  name)
 {
 	this->name=name;
 }

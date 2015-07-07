@@ -9,9 +9,8 @@
 using namespace std;
 using namespace com::toxiclabs::galaxy;
 
-MenuScreen::MenuScreen()
+MenuScreen::MenuScreen():Screen("screen.Menu")
 {
-	name="screen.Menu";
 	Game::GetGame()->LoadTextures("../rsrc/","menu");
 	
 	ScreenSprite * s = new ScreenSprite("menu.background",this);

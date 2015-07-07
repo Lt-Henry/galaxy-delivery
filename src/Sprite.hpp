@@ -31,7 +31,7 @@ namespace com
 				SDL_Rect rectangle; 
 				
 				Sprite(std::string name);
-				virtual ~Sprite();
+				virtual ~Sprite(){};
 				
 				virtual void Step(int ms,std::vector<SDL_Event> & events){};
 				
