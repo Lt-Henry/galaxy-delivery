@@ -27,7 +27,7 @@ Game::Game()
 Game::~Game()
 {
 	cout<<"Game destructor"<<endl;
-	UnloadTextures();
+	//ToDo: Unload textures
 }
 
 Game * Game::GetGame()
@@ -71,13 +71,11 @@ void Game::Run()
 		return;
 	}
 	
-	/* Load textures once the renderer is ready */
-	LoadTextures("../rsrc");
-	
+
 	/* Load scenes */
-	screens.push_back(new IntroScreen());
+	screens.push_back(new MenuScreen());
 	
-	GoToScreen("screen.Intro");
+	GoToScreen("screen.Menu");
 	
 	bool quit_request=false;
 	SDL_Event event;
@@ -199,30 +197,30 @@ void Game::Render()
 {
 	if(screen!=nullptr)
 	{
-		vector<Sprite *>screen;
-		vector<Sprite *>world;
+		vector<Sprite *>screen_sprites;
+		vector<Sprite *>world_sprites;
 		
 		for(Sprite * sprite : screen->sprites)
 		{
 			switch(sprite->rendermode)
 			{
 				case SpriteRenderMode::Screen:
-					screen.push_back(sprite);
+					screen_sprites.push_back(sprite);
 				break;
 			
 				case SpriteRenderMode::World:
-					world.push_back(sprite);
+					world_sprites.push_back(sprite);
 				break;
 			}
 		}
 		
-		for(Sprite * sprite : world)
+		for(Sprite * sprite : world_sprites)
 		{
 			//ToDo: camera differential
 			SDL_RenderCopy(renderer,sprite->texture,nullptr,&sprite->rectangle);
 		}
 	
-		for(Sprite * sprite : screen)
+		for(Sprite * sprite : screen_sprites)
 		{
 			SDL_RenderCopy(renderer,sprite->texture,nullptr,&sprite->rectangle);
 		} 
@@ -233,7 +231,7 @@ void Game::Render()
 
 
 
-void Game::GotoScreen(string & name)
+void Game::GoToScreen(string name)
 {
 
 	for(Screen * q : screens)

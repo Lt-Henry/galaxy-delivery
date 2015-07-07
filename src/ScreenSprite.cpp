@@ -6,7 +6,7 @@ using namespace std;
 using namespace com::toxiclabs::galaxy;
 
 
-ScreenSprite::ScreenSprite(string & name,Screen * screen):Sprite(name)
+ScreenSprite::ScreenSprite(string name,Screen * screen):Sprite(name)
 {
 	rendermode=SpriteRenderMode::Screen;
 	this->screen=screen;
@@ -52,7 +52,9 @@ void ScreenSprite::SetPosition(int x,int y, ScreenSpriteCenter center)
 
 void ScreenSprite::SetTexture(SDL_Texture * texture)
 {
+	uint32_t format;
+	int access;
+	
+	SDL_QueryTexture(texture,&format,&access,&rectangle.w,&rectangle.h);
 	this->texture=texture;
-	rectangle.w=texture->w;
-	rectangle.h=texture->h;
 }

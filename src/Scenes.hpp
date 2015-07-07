@@ -9,12 +9,12 @@ namespace com
 	{
 		namespace galaxy
 		{
-			class IntroScreen : Screen
+			class MenuScreen : public Screen
 			{
 				public:
 				
-				IntroScreen();
-				~IntroScreen();
+				MenuScreen();
+				~MenuScreen();
 				
 				void Step(int ms,std::vector<SDL_Event> & events);
 			}; 

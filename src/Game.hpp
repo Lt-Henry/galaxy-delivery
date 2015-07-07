@@ -50,7 +50,7 @@ namespace com
 				
 				void Render();
 				
-				void GotoScreen(std::string & name);
+				void GoToScreen(std::string name);
 				
 				
 			};

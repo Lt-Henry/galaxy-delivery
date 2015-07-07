@@ -2,9 +2,11 @@
 
 #include "WorldSprite.hpp"
 
+using namespace std;
+using namespace com::toxiclabs::galaxy;
 
 
-WorldSprite::WorldSprite(std::string & name,Screen * screen):Sprite(name);
+WorldSprite::WorldSprite(string name,Screen * screen):Sprite(name)
 {
 	rendermode=SpriteRenderMode::World;
 	this->screen=screen;

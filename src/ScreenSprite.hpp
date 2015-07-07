@@ -25,7 +25,7 @@ namespace com
 					
 				public:
 				
-				ScreenSprite(std::string & name,Screen * screen);
+				ScreenSprite(std::string name,Screen * screen);
 				virtual ~ScreenSprite(){};
 				
 				

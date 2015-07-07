@@ -1,24 +1,32 @@
 
 
 #include "Scenes.hpp"
+#include "Game.hpp"
+#include "ScreenSprite.hpp"
 
 #include <iostream>
 
 using namespace std;
 using namespace com::toxiclabs::galaxy;
 
-IntroScreen::IntroScreen()
+MenuScreen::MenuScreen()
 {
-	name="screen.Intro";
+	name="screen.Menu";
+	Game::GetGame()->LoadTextures("../rsrc/","menu");
+	
+	ScreenSprite * s = new ScreenSprite("menu.background",this);
+	s->SetPosition(0,0,ScreenSpriteCenter::TopLeft);
+	s->SetTexture(Game::GetGame()->textures["menu.background"]);
+	Add(s);
 }
 
 
-IntroScreen::~IntroScreen()
+MenuScreen::~MenuScreen()
 {
 }
 
 
-void IntroScreen::Step(int ms,std::vector<SDL_Event> & events)
+void MenuScreen::Step(int ms,std::vector<SDL_Event> & events)
 {
 	Screen::Step(ms,events);
 }

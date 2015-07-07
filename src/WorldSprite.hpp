@@ -22,8 +22,8 @@ namespace com
 				
 				public:
 				
-				WorldSprite(std::string & name,Screen * screen);
-				virtual WorldSprite(){};
+				WorldSprite(std::string name,Screen * screen);
+				virtual ~WorldSprite(){};
 			};
 		}
 	}
