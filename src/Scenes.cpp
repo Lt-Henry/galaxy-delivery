@@ -11,7 +11,7 @@ using namespace com::toxiclabs::galaxy;
 
 MenuScreen::MenuScreen():Screen("screen.Menu")
 {
-	Game::GetGame()->LoadTextures("../rsrc/","menu");
+	Game::GetGame()->LoadTextures("menu");
 	
 	ScreenSprite * s = new ScreenSprite("menu.background",this);
 	s->SetPosition(0,0,ScreenSpriteCenter::TopLeft);

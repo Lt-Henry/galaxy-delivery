@@ -119,15 +119,15 @@ void Game::Run()
 }
 
 
-void Game::LoadTextures(string path,string pkg)
+void Game::LoadTextures(string pkg)
 {
-	
-	path=path+"/"+pkg+"/*.png";
+	string path;
+	path=GAME_RSRC+"/"+pkg+"/*.png";
 	
 	cout<<"Loading Textures..."<<endl;
 	
 	glob_t glob_result;
-	glob(path.c_str(),GLOB_TILDE,NULL,&glob_result);
+	glob(path.c_str(),GLOB_TILDE,nullptr,&glob_result);
 		
 	for(unsigned int i=0;i<glob_result.gl_pathc;i++)
 	{
