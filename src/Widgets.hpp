@@ -17,10 +17,18 @@ namespace com
 				
 				std::vector<SDL_Texture *> textures;
 				
+				bool is_over;
+				bool is_click;
+				
 				public:
 				
-				Button(Screen * screen,std::vector<std::string> & tex_names);
+				Button(std::string name,Screen * screen,std::vector<std::string> & tex_names);
+				virtual ~Button();
 				
+				void Step(int ms,std::vector<SDL_Event> & events);
+				
+				bool IsOver();
+				bool IsClick();
 			};
 		}
 	}
