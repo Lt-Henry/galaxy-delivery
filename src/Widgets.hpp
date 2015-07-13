@@ -22,6 +22,9 @@ namespace com
 				
 				public:
 				
+				/*!
+				 required textures are: normal, over, pressed
+				*/
 				Button(std::string name,Screen * screen,std::vector<std::string> & tex_names);
 				virtual ~Button();
 				
