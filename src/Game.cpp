@@ -122,7 +122,7 @@ void Game::Run()
 void Game::LoadTextures(string pkg)
 {
 	string path;
-	path=GAME_RSRC+"/"+pkg+"/*.png";
+	path=string(GAME_RSRC)+"/"+pkg+"/*.png";
 	
 	cout<<"Loading Textures..."<<endl;
 	

@@ -3,7 +3,7 @@
 #include "Widgets.hpp"
 
 using namespace std;
-using namespace net::lliurex::toxiclabs;
+using namespace com::toxiclabs::galaxy;
 
 
 Button::Button(string name,Screen * screen,vector<string> & tex_names):ScreenSprite(name,screen)
@@ -33,7 +33,7 @@ void Button::Step(int ms,vector<SDL_Event> & events)
 		switch(event.type)
 		{
 			case SDL_MOUSEMOTION:
-				over=Click(event.x,event.y);
+				over=Click(event.motion.x,event.motion.y);
 				//Mouse in
 				if(is_over==false && over==true)
 				{
@@ -46,15 +46,29 @@ void Button::Step(int ms,vector<SDL_Event> & events)
 				{
 					is_over=false;
 					SetTexture(textures[0]);
-	}
+				}
 
+			break;
+			
+			case SDL_MOUSEBUTTONUP:
+			
+				//mouse up
+				if(is_click==true)
+				{
+					is_click=false;
+					
+					if(is_over)
+						SetTexture(textures[1]);
+					else
+						SetTexture(textures[0]);
+				}
+			
 			break;
 			
 			case SDL_MOUSEBUTTONDOWN:
 			
-				//ToDo: missing MOUSEBUTTONUP
 				
-				click=Click(event.x,event.y);
+				click=Click(event.button.x,event.button.y);
 				//mouse down
 				if(is_click==false && click==true)
 				{
@@ -62,16 +76,7 @@ void Button::Step(int ms,vector<SDL_Event> & events)
 					SetTexture(textures[2]);
 				}
 	
-				//mouse up
-				if(is_click==true && click==false)
-				{
-					is_click=false;
-		
-					if(is_over)
-						SetTexture(textures[1]);
-					else
-						SetTexture(textures[0]);
-				}
+				
 			break;
 		}
 	}
