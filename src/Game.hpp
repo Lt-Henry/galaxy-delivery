@@ -32,6 +32,8 @@ namespace com
 				std::vector<Screen *> screens;
 				Screen * screen;
 				
+				bool quit_request;
+				
 				/*!
 				 private constructor
 				*/
@@ -65,6 +67,12 @@ namespace com
 				 function
 				*/
 				void Run();
+				
+				
+				/*!
+				 Request main loop to terminate
+				*/
+				void Quit();
 				
 				/*!
 				 Loads a texture package. A package is a folder 

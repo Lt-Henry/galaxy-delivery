@@ -2,6 +2,7 @@
 #define _SCENES_
 
 #include "Screen.hpp"
+#include "Widgets.hpp"
 
 namespace com
 {
@@ -12,6 +13,9 @@ namespace com
 			class MenuScreen : public Screen
 			{
 				public:
+				
+				Button * btnPlay;
+				Button * btnExit;
 				
 				MenuScreen();
 				~MenuScreen();

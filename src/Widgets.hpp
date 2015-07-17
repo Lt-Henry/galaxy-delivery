@@ -33,6 +33,21 @@ namespace com
 				bool IsOver();
 				bool IsClick();
 			};
+			
+			
+			class Label: public ScreenSprite
+			{
+				private:
+				
+				std::string text;
+				
+				void Build();
+				
+				public:
+				
+				Label(std::string name,Screen * screen,std::string text);
+				virtual ~Label();
+			};
 		}
 	}
 }

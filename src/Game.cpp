@@ -35,7 +35,7 @@ Game * Game::GetGame()
 	if(Game::factory==nullptr)
 		Game::factory = new Game();
 		
-		return Game::factory;
+	return Game::factory;
 }
 
 void Game::Free()
@@ -43,6 +43,7 @@ void Game::Free()
 	if(Game::factory!=nullptr)
 	{
 		delete Game::factory;
+		Game::factory=nullptr;
 	}
 }
 
@@ -77,7 +78,7 @@ void Game::Run()
 	
 	GoToScreen("screen.Menu");
 	
-	bool quit_request=false;
+	quit_request=false;
 	SDL_Event event;
 		
 	
@@ -118,6 +119,11 @@ void Game::Run()
 	SDL_Quit();
 }
 
+
+void Game::Quit()
+{
+	quit_request=true;
+}
 
 void Game::LoadTextures(string pkg)
 {

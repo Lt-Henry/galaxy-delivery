@@ -95,3 +95,24 @@ bool Button::IsClick()
 {
 	return is_click;
 }
+
+
+//*************************************************
+//		LABEL
+//*************************************************
+
+Label::Label(string name,Screen * screen,string text):ScreenSprite(name,screen)
+{
+	this->text=text;
+	Build();
+}
+
+Label::~Label()
+{
+}
+
+void Label::Build()
+{
+	//Render goes here
+}
+
