@@ -34,6 +34,8 @@ namespace com
 				
 				bool quit_request;
 				
+				int fps;
+				
 				/*!
 				 private constructor
 				*/

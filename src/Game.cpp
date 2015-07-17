@@ -64,7 +64,7 @@ void Game::Run()
 		return;
 	}
 	
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 	
 	if(renderer==nullptr)
 	{
@@ -72,6 +72,7 @@ void Game::Run()
 		return;
 	}
 	
+	SDL_RenderSetLogicalSize(renderer,1280,720);
 
 	/* Load scenes */
 	screens.push_back(new MenuScreen());
@@ -82,7 +83,13 @@ void Game::Run()
 	SDL_Event event;
 		
 	
+	uint32_t t1,t2,second,delay;
+	int fpcount=0;
+	fps=0;
 	vector<SDL_Event> events;
+	
+	t1 = SDL_GetTicks();
+	second=t1;
 	
 	while(!quit_request)
 	{
@@ -114,6 +121,28 @@ void Game::Run()
 		SDL_RenderClear(renderer);
 		Render();
 		SDL_RenderPresent(renderer);
+		
+		fpcount++;
+		
+		t2=SDL_GetTicks();
+		
+		delay=33-(t2-t1);
+		t1=t2;
+		if(delay>33)
+			delay=33;
+		SDL_Delay(delay);
+		
+		
+		
+		if(t2-second > 1000)
+		{
+			fps=fpcount;
+			fpcount=0;
+			second=t2;
+			
+			cout<<"fps: "<<fps<<endl;
+			cout<<"delay: "<<delay<<endl;
+		}
 	}
 	
 	SDL_Quit();
