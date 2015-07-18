@@ -11,6 +11,8 @@
 #include <iostream>
 #include <string>
 
+#define TFPS 1000/30
+
 using namespace std;
 using namespace com::toxiclabs::galaxy;
 
@@ -85,14 +87,17 @@ void Game::Run()
 	
 	uint32_t t1,t2,second,delay;
 	int fpcount=0;
+	int dt=15;
+	
 	fps=0;
 	vector<SDL_Event> events;
 	
-	t1 = SDL_GetTicks();
-	second=t1;
+	second=0;
 	
 	while(!quit_request)
 	{
+		t1 = SDL_GetTicks();
+		
 		events.clear();
 		
 		while(SDL_PollEvent(&event))
@@ -114,7 +119,7 @@ void Game::Run()
 		
 		if(screen!=nullptr)
 		{
-			screen->Step(10,events);
+			screen->Step(dt,events);
 		}
 		
 		
@@ -126,21 +131,30 @@ void Game::Run()
 		
 		t2=SDL_GetTicks();
 		
-		delay=33-(t2-t1);
-		t1=t2;
-		if(delay>33)
-			delay=33;
-		SDL_Delay(delay);
+		dt=(t2-t1);
+		
+		if(dt<TFPS)
+		{
+			delay=TFPS-dt;
+			dt=TFPS;
+			SDL_Delay(delay);
+		}
+		else
+			delay=0;
 		
 		
 		
-		if(t2-second > 1000)
+		second+=dt;
+		
+		
+		if(second >= 1000)
 		{
 			fps=fpcount;
 			fpcount=0;
-			second=t2;
+			second=0;
 			
 			cout<<"fps: "<<fps<<endl;
+			cout<<"delta: "<<dt<<endl;
 			cout<<"delay: "<<delay<<endl;
 		}
 	}
